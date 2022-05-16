@@ -58,7 +58,7 @@ Para a construção dessa API, foi utilizado os seguintes requerimentos:
 
 > **Observação 1.1:** Os dados de Contatos devem ser passados para TbContatos se os dados forem validados com sucesso.
 
-<h1>3. Etrutura do Backend</h1>
+<h1>3. Estrutura do Backend</h1>
 
 <p>
 Nessa seção você irá ver como o backend do projeto foi feito e a sua comunicação. Foi utilizado uma arquitetura em camadas para essa comunicação, que consiste em:
@@ -162,7 +162,7 @@ contatos-fast -> diretório raiz.
 ```
 
 <h1>
-Considerações Finais
+4. Considerações Finais
 </h1>
 
 <p>
