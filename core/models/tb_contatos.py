@@ -1,3 +1,4 @@
+from persist.persist import Database
 from peewee import (
     Model, CharField, AutoField,
 )
@@ -20,6 +21,6 @@ class TbContatos(Model):
 
     class Meta:
         # It calls database
-        database = None
+        database = Database.open_it()
         # table name
         table_name = 'tbContatos'
