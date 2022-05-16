@@ -118,6 +118,32 @@ class DAOContatos:
         finally:
             Database.close_it()
 
+    # read by tag
+
+    def read_by_tag(self, tag: str) -> json:
+        """Read Contato By Id.
+
+        Args:
+            tag (str): Contact tag.
+
+        Returns:
+            json: json with the result.
+        """
+        try:
+            data = self._template([], 0, '')
+            Database.open_it()
+            contatos = (TbContatos.select().where(TbContatos.tag == tag))
+            if not contatos:
+                data['codes'] = 404
+                data['msg'] = 'HTTP Error: Not Found.'
+            else:
+                data['data'].append(self._selecter(data=contatos))
+                data['codes'] = 200
+                data['msg'] = 'Success! Contact Found.'
+            return json.dumps(data)
+        finally:
+            Database.close_it()
+
     # update
 
     def update(self, id: int, **kwargs) -> json:

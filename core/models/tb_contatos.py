@@ -17,7 +17,7 @@ class TbContatos(Model):
     name = CharField(max_length=80)
     email = CharField(max_length=120, null=True)
     mobile = CharField(max_length=20)
-    info = CharField(max_length=255, null=True)
+    tag = CharField(max_length=255, null=True)
 
     class Meta:
         # It calls database
