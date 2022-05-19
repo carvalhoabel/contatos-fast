@@ -9,4 +9,4 @@ class Contatos(BaseModel):
     name: str
     email: Union[str, None] = None
     mobile: str
-    info: Union[str, None] = None
+    tag: Union[str, None] = None
