@@ -9,7 +9,7 @@ Para a construção dessa API, foi utilizado os seguintes requerimentos:
 <ul style="list-style-type: circle">
     <li><a href='https://fastapi.tiangolo.com/' target='_blank'>FastAPI</a> Biblioteca estrutural desta API <code>$ pip install fastapi </code></li>
     <li><a href='https://www.uvicorn.org/' target='_blank'>Uvicorn</a> Servidor de testes <code>$ pip install uvicorn["standard"] </code></li>
-    <li><a href='http://docs.peewee-orm.com/en/latest/' target='_blank'>Peewee</a> Python ORM <code>$ pip install peewee </code></li>
+    <li><a href='http://docs.peewee-orm.com/en/latest/' target='_blank'>Peewee</a> Python Database ORM <code>$ pip install peewee </code></li>
 </ul>
 
 > **Observação 1.0:** Nesse projeto se encontra o arquivo [```requirements.txt```](requirements.txt), nele você encontra toda a lista de dependências para o projeto. Para instalar, apenas digite: **```$ pip install -r requirements.txt```**.
@@ -56,7 +56,7 @@ Para a construção dessa API, foi utilizado os seguintes requerimentos:
     </li>
 </ul>
 
-> **Observação 1.1:** Os dados de Contatos devem ser passados para TbContatos se os dados forem validados com sucesso.
+> **Observação 1.1:** Os dados de Contatos devem ser passados para TbContatos se os dados forem validados com sucesso. Isso é feito na terceira camada.
 
 <h1>3. Estrutura do Backend</h1>
 
@@ -75,7 +75,10 @@ Nessa seção você irá ver como o backend do projeto foi feito e a sua comunic
             # Tudo começa aqui, os dados são inseridos num modelo e enviados para cá, onde é feita a comunicação com o <strong style='color: red'>Service</strong>, que é o 2º Nível.
         </dd>
         <dd>
-            # Cada método, cabeçalho igual os métodos do Service, deve retornar o <code>json</code> para o método de requisição, que é a URL que pede acesso a esta classe. 
+            # Cada método, cabeçalho igual os métodos do Service, deve retornar o <code>json</code> para o <i>endpoint</i>, que é a URL que pede acesso ao backend.
+        </dd>
+        <dd>
+            # Para a realização de buscas, atualização e deleção, podem ser enviados dados de tipo primitivo, como inteiro ou string.
         </dd>
     <dt>
         2º Nível: 
@@ -84,6 +87,9 @@ Nessa seção você irá ver como o backend do projeto foi feito e a sua comunic
         <dd>
             # Essa classe recebe dados a partir do <strong style='color: red'>Facade</strong>, então deve fazer as validações necessárias, de acordo com o caminho desejado. e então enviar os dados para o 
             <strong style='color: red'>DAOContatos</strong>, que é o 3º Nível.
+        </dd>
+        <dd>
+            # Todas as validações cruciais são feitas por meio do módulo <a href='/core/utils/validators.py' target='_blank'>validators</a>, com todas as funções e recursos de programação funcional.
         </dd>
         <dd>
             # Se for encontrado algum problema na validação, deve retornar um <code>json</code> com o <code>status code</code> e uma mensagem de erro.
@@ -152,6 +158,7 @@ contatos-fast -> diretório raiz.
 |    |    utils > pacote com módulos auxiliares.
 |    |    |   __init__.py
 |    |    |   config.py
+|    |    |   validators.py
 |    |    __init__.py
 |    settings > diretório com arquivo configuração.
 |    main.py # arquivo principal
